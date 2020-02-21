@@ -4,5 +4,10 @@
 
 #ifndef OS_SCHEDULER_SCHEDULER_H
 #define OS_SCHEDULER_SCHEDULER_H
-class Scheduler {};
+
+class Scheduler {
+public:
+    static unsigned long currentTime();
+};
+
 #endif //OS_SCHEDULER_SCHEDULER_H
