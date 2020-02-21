@@ -12,7 +12,7 @@ unsigned long Time::getTime() const {
 }
 
 void Time::now(){
-    this->m_time = Scheduler::currentTime();
+    *this = Scheduler::currentTime();
 }
 
 Time &Time::operator+=(const Time &t) {
