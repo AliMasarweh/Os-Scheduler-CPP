@@ -11,8 +11,10 @@ const Time& Scheduler::currentTime() {
     return s_time;
 }
 
-void Scheduler::addTask(Task &t) {
-    s_tasksByPriority[t.getPrioirty()].push_back(&t);
+void Scheduler::addTask(Task &t)
+{
+    unsigned char priority = t.getPriority();
+    s_tasksByPriority[priority].push_back(&t);
 }
 
 Time Scheduler::runAllTasks() {
