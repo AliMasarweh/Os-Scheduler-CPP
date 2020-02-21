@@ -12,13 +12,16 @@ class Task;
 
 class Scheduler {
 public:
-    static Time currentTime();
+    static const Time& currentTime();
     static void addTask(Task& t);
     static Time runAllTasks();
 
 private:
+    static std::vector<std::vector<Task *> > initTasksContainer();
+
     static Time s_time;
     /* This a collections indexes tasks by their priority */
+    const static unsigned char s_highestPriority = 10;
     static std::vector<std::vector<Task*> > s_tasksByPriority;
 };
 
