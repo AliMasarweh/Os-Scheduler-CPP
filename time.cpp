@@ -58,7 +58,7 @@ Time operator-(const Time &time1, const Time &time2) {
 }
 
 std::ostream &operator<<(std::ostream &os, Time &time) {
-    os << "Time is : " <<time.time;
+    os << "Time is : " << time.time;
     return os;
 }
 
