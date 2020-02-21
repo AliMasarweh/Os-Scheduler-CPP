@@ -5,14 +5,14 @@
 #include "time.h"
 #include "scheduler.h"
 
-Time::Time(unsigned long t):time(t) {}
+Time::Time(unsigned long t):m_time(t) {}
 
 unsigned long Time::getTime() const {
-    return time;
+    return m_time;
 }
 
 void Time::now(){
-    this->time = Scheduler::currentTime();
+    this->m_time = Scheduler::currentTime();
 }
 
 Time &Time::operator+=(const Time &t) {
@@ -26,7 +26,7 @@ Time &Time::operator-=(const Time &t) {
 }
 
 bool Time::operator<(const Time &t) const {
-    return time < t.time;
+    return this->m_time < t.m_time;
 }
 
 bool Time::operator>(const Time &t) const {
@@ -50,15 +50,15 @@ bool Time::operator>=(const Time &t) const {
 }
 
 Time operator+(const Time &time1, const Time &time2) {
-    return Time(time1.time + time2.time);
+    return Time(time1.m_time + time2.m_time);
 }
 
 Time operator-(const Time &time1, const Time &time2) {
-    return Time(time1.time - time2.time);
+    return Time(time1.m_time - time2.m_time);
 }
 
 std::ostream &operator<<(std::ostream &os, Time &time) {
-    os << "Time is : " << time.time;
+    os << "Time is : " << time.m_time;
     return os;
 }
 

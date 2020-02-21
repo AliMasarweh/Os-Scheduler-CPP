@@ -32,6 +32,6 @@ public:
     bool operator>=(const Time& t) const ;
 
 private:
-    unsigned long time;
+    unsigned long m_time;
 };
 #endif //OS_SCHEDULER_TIME_H
