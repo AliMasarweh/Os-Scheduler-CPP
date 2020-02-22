@@ -7,5 +7,6 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 add_executable(OS_Scheduler main.cpp task.h scheduler.h time.h
         time.cpp scheduler.cpp task_decorator.h task_decorator.cpp
-        basic_task.h basic_task.cpp)
+        basic_task.h basic_task.cpp
+        looping_task.h looping_task.cpp)
 target_link_libraries(OS_Scheduler gtest gtest_main pthread)
