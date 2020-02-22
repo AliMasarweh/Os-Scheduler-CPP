@@ -8,6 +8,8 @@
 
 using namespace std;
 
+Time Scheduler::s_time = Time();
+size_t Scheduler::s_numberOfTasks = 0;
 vector<vector<Task*> >
         Scheduler::s_tasksByPriority = Scheduler::initTasksContainer();
 
@@ -19,6 +21,7 @@ void Scheduler::addTask(Task &t)
 {
     unsigned char taskPriority = t.getPriority();
     s_tasksByPriority[taskPriority].push_back(&t);
+    ++s_numberOfTasks;
 }
 
 Time Scheduler::runAllTasks() {
@@ -28,16 +31,23 @@ Time Scheduler::runAllTasks() {
     for(unsigned char i = s_highestPriority-1; i >= 0; --i)
     {
         vector<Task *> tasks = s_tasksByPriority[i];
-        for(size_t j = 0; j < tasks.size(); ++j)
+        for(size_t j = 0; j < tasks.size();)
         {
-            Task * task = tasks.at(i);
-            clock_t time = clock();
-            task->run();
-            totalRunningTime += (clock() - time)/
-                    CLOCKS_PER_SEC*clockPerSecToMilliSec;
+            Task * task = tasks[j];
+            if(task->getNextRunPeriod() > 0){
+                clock_t time = clock();
+                task->run();
+                totalRunningTime +=
+                        (clock() - time)/
+                        CLOCKS_PER_SEC*clockPerSecToMilliSec;
+                tasks.erase(tasks.begin()+j);
+                --s_numberOfTasks;
+            } else
+                ++j;
+
         }
     }
-
+    
     return totalRunningTime;
 }
 

@@ -23,6 +23,7 @@ private:
     /* This a collections indexes tasks by their priority */
     const static unsigned char s_highestPriority = 10;
     static std::vector<std::vector<Task*> > s_tasksByPriority;
+    static size_t s_numberOfTasks;
 };
 
 #endif //OS_SCHEDULER_SCHEDULER_H
