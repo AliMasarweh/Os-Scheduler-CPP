@@ -28,26 +28,28 @@ Time Scheduler::runAllTasks() {
     Time totalRunningTime(0);
     int clockPerSecToMilliSec = 1000;
 
-    for(unsigned char i = s_highestPriority-1; i >= 0; --i)
+    for (unsigned char i = s_highestPriority - 1; s_numberOfTasks; --i)
     {
-        vector<Task *> tasks = s_tasksByPriority[i];
-        for(size_t j = 0; j < tasks.size();)
+        vector<Task *> tasks = s_tasksByPriority.at(i);
+        for (size_t j = 0; s_numberOfTasks && j < tasks.size();)
         {
-            Task * task = tasks[j];
-            if(task->getNextRunPeriod() > 0){
+            Task *task = tasks.at(j);
+            if (task->getNextRunPeriod() > 0)
+            {
                 clock_t time = clock();
                 task->run();
                 totalRunningTime +=
-                        (clock() - time)/
-                        CLOCKS_PER_SEC*clockPerSecToMilliSec;
-                tasks.erase(tasks.begin()+j);
+                        (clock() - time) /
+                        (CLOCKS_PER_SEC * clockPerSecToMilliSec);
+                tasks.erase(tasks.begin() + j);
                 --s_numberOfTasks;
             } else
                 ++j;
 
         }
+        i = i%s_highestPriority? i: s_highestPriority;
     }
-    
+
     return totalRunningTime;
 }
 
