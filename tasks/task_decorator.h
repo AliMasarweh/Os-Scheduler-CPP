@@ -5,7 +5,7 @@
 #ifndef OS_SCHEDULER_TASK_DECORATOR_H
 #define OS_SCHEDULER_TASK_DECORATOR_H
 
-#include "task.h"
+#include "../task.h"
 
 class TaskDecorator: public Task
 {
