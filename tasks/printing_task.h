@@ -10,7 +10,7 @@
 
 class PrintingTask: public TaskDecorator {
 public:
-    explicit PrintingTask(Task& t, std::string message = "Running");
+    explicit PrintingTask(Task& t, std::ostream& stream = std::cout, std::string message = "Running");
     virtual void run();
     virtual unsigned long getNextRunPeriod();
     virtual unsigned char getPriority();
@@ -18,6 +18,7 @@ public:
 private:
     Task* m_task;
     std::string m_message;
+    std::ostream* m_streamer;
 };
 
 

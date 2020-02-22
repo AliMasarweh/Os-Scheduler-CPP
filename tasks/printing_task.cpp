@@ -7,11 +7,11 @@
 
 using namespace std;
 
-PrintingTask::PrintingTask(Task &t, string message)
-:TaskDecorator(t), m_task(&t), m_message(message){}
+PrintingTask::PrintingTask(Task &t, std::ostream& stream, string message)
+:TaskDecorator(t), m_task(&t), m_streamer(&stream), m_message(message){}
 
 void PrintingTask::run() {
-    cout << this->m_message << endl;
+    *m_streamer << this->m_message;
     this->m_task->run();
 }
 
