@@ -2,6 +2,8 @@
 #include <gtest/gtest.h>
 #include <stdlib.h>
 #include "time.h"
+#include "tasks/basic_task.h"
+#include "tasks/streaming_task.h"
 
 using namespace std;
 
@@ -28,4 +30,17 @@ TEST(TimeUnitTesting, TimeRelationalOperatorTesting)
     Time time1(t1), time2(t2);
 
     ASSERT_EQ(time1<time2, t1<t2);
+}
+
+TEST(TaskUnitTesting, CreatingBasicTaskAndDecorating)
+{
+    stringstream ss;
+    string str("I print");
+
+    BasicTask task;
+    StreamingTask streamingTask(task, ss, str);
+
+    streamingTask.run();
+
+    ASSERT_EQ(ss.str(), str);
 }
