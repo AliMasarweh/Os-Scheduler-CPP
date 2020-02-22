@@ -4,6 +4,7 @@
 
 #include <time.h>
 #include "scheduler.h"
+#include "task.h"
 
 using namespace std;
 
