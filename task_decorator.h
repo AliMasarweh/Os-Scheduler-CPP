@@ -11,7 +11,7 @@ class TaskDecorator: public Task
 {
     Task* task;
 public:
-    TaskDecorator(Task& t);
+    explicit TaskDecorator(Task& t);
     virtual void run();
     virtual unsigned long getNextRunPeriod();
     virtual unsigned char getPriority();
