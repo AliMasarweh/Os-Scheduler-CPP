@@ -10,15 +10,15 @@
 
 class BasicTask: public Task {
 public:
-    BasicTask(unsigned char priority = 1, unsigned long waitingTime = 0);
+    BasicTask(unsigned long waitingTime = 0, unsigned long execTimeFreq = 0,
+            unsigned char repetition = 1);
     virtual void run();
     virtual unsigned long getNextRunPeriod();
-    virtual unsigned char getPriority();
 
 private:
-    Time m_runningTime;
-    unsigned char m_priority;
     Time m_executionTime;
+    Time m_executionTimeFreq;
+    unsigned char m_repetition;
 };
 
 

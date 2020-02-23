@@ -6,7 +6,10 @@
 #include "../scheduler.h"
 
 void BasicTask::run() {
-    // Open the stack
+    if(m_repetition--)
+        m_executionTime += m_executionTimeFreq;
+    else
+        m_executionTime = -1;
 }
 
 unsigned long BasicTask::getNextRunPeriod() {
@@ -17,10 +20,8 @@ unsigned long BasicTask::getNextRunPeriod() {
     return 0;
 }
 
-unsigned char BasicTask::getPriority() {
-    return this->m_priority;
-}
-
-BasicTask::BasicTask(unsigned char priority, unsigned long waitingTime)
-:m_priority(priority),
-m_executionTime(Scheduler::currentTime() + waitingTime) {}
+BasicTask::BasicTask(unsigned long waitingTime, unsigned long execTimeFreq,
+        unsigned char repetition)
+:m_executionTime(Scheduler::currentTime() + waitingTime),
+ m_executionTimeFreq(execTimeFreq),
+ m_repetition(repetition){}
