@@ -4,6 +4,7 @@
 #include "time.h"
 #include "tasks/basic_task.h"
 #include "tasks/streaming_task.h"
+#include "tasks/looping_task.h"
 
 using namespace std;
 
@@ -39,8 +40,16 @@ TEST(TaskUnitTesting, CreatingBasicTaskAndDecorating)
 
     BasicTask task;
     StreamingTask streamingTask(task, ss, str);
+    LoopingTask loopingTask(streamingTask, 3);
 
-    streamingTask.run();
+    loopingTask.run();
 
-    ASSERT_EQ(ss.str(), str);
+    ASSERT_EQ(ss.str(), str + str + str);
 }
+
+TEST(SchedulerUnitTesting, AllTasksExecution)
+{
+    //TODO: Add some tasks to the schudeler
+    // Check if all are executed well
+}
+
