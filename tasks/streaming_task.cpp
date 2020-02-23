@@ -15,6 +15,6 @@ void StreamingTask::run() {
     this->m_task->run();
 }
 
-unsigned long StreamingTask::getNextRunPeriod() {
+unsigned long StreamingTask::getNextRunPeriod() const {
     return this->m_task->getNextRunPeriod();
 }

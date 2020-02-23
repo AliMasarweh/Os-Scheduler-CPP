@@ -12,7 +12,7 @@ class StreamingTask: public TaskDecorator {
 public:
     explicit StreamingTask(Task& t, std::ostream& stream = std::cout, std::string message = "Running");
     virtual void run();
-    virtual unsigned long getNextRunPeriod();
+    virtual unsigned long getNextRunPeriod() const;
 
 private:
     Task* m_task;

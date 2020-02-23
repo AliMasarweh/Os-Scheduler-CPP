@@ -12,6 +12,6 @@ void TaskDecorator::run() {
     this->task->run();
 }
 
-unsigned long TaskDecorator::getNextRunPeriod() {
+unsigned long TaskDecorator::getNextRunPeriod() const {
     return this->task->getNextRunPeriod();
 }

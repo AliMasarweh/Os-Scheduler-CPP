@@ -12,6 +12,6 @@ void LoopingTask::run() {
         this->m_task->run();
 }
 
-unsigned long LoopingTask::getNextRunPeriod() {
+unsigned long LoopingTask::getNextRunPeriod() const {
     return this->m_task->getNextRunPeriod();
 }

@@ -12,7 +12,7 @@ void BasicTask::run() {
         m_executionTime = -1;
 }
 
-unsigned long BasicTask::getNextRunPeriod() {
+unsigned long BasicTask::getNextRunPeriod() const {
     unsigned long time = Scheduler::currentTime().getTime();
     if(m_executionTime > time)
         return (m_executionTime - time).getTime();

@@ -13,7 +13,7 @@ public:
     BasicTask(unsigned long waitingTime = 0, unsigned long execTimeFreq = 0,
             unsigned char repetition = 1);
     virtual void run();
-    virtual unsigned long getNextRunPeriod();
+    virtual unsigned long getNextRunPeriod() const;
 
 private:
     Time m_executionTime;

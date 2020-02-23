@@ -11,7 +11,7 @@ class LoopingTask: public TaskDecorator {
 public:
     explicit LoopingTask(Task& t, unsigned int numOfLoops = 100);
     virtual void run();
-    virtual unsigned long getNextRunPeriod();
+    virtual unsigned long getNextRunPeriod() const;
 
 private:
     Task* m_task;

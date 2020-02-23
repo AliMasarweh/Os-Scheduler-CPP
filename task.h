@@ -7,12 +7,12 @@
 
 struct Task
 {
-    virtual void run() = 0;
-    virtual unsigned long getNextRunPeriod() = 0; // in milliseconds
-    bool operator>(Task& t)
+    friend bool operator>(const Task& t1, const Task& t2)
     {
-        return this->getNextRunPeriod() > t.getNextRunPeriod();
+        return t1.getNextRunPeriod() > t2.getNextRunPeriod();
     }
+    virtual void run() = 0;
+    virtual unsigned long getNextRunPeriod() const = 0; // in milliseconds
 };
 
 #endif //OS_SCHEDULER_TASK_H

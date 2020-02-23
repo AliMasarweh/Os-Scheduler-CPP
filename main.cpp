@@ -47,6 +47,23 @@ TEST(TaskUnitTesting, CreatingBasicTaskAndDecorating)
     ASSERT_EQ(ss.str(), str + str + str);
 }
 
+TEST(TaskUnitTesting, BasicTaskComparision)
+{
+    BasicTask task1(1);
+    BasicTask task2(3);
+
+    ASSERT_TRUE(task2 > task1);
+
+    BasicTask* pTask2 = &task2;
+    BasicTask* pTask1 = &task1;
+    cout << (pTask2 > pTask1) << endl;
+    ASSERT_TRUE(pTask2 > pTask1);
+
+    size_t add_pTask1 = (size_t) pTask1;
+    size_t add_pTask2 = (size_t) pTask2;
+    ASSERT_TRUE(add_pTask1 < add_pTask2);
+}
+
 TEST(SchedulerUnitTesting, AllTasksExecution)
 {
     //TODO: Add some tasks to the schudeler

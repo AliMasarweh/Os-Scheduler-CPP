@@ -13,7 +13,7 @@ class TaskDecorator: public Task
 public:
     explicit TaskDecorator(Task& t);
     virtual void run();
-    virtual unsigned long getNextRunPeriod();
+    virtual unsigned long getNextRunPeriod() const;
 };
 
 #endif //OS_SCHEDULER_TASK_DECORATOR_H
