@@ -11,8 +11,8 @@ using namespace std;
 
 Time Scheduler::s_time = Time();
 size_t Scheduler::s_numberOfTasks = 0;
-priority_queue<Task, vector<Task*>,
-        greater<Task> > Scheduler::s_prioritizedTasks;
+priority_queue<Task*, vector<Task*>,
+        greater<Task*> > Scheduler::s_prioritizedTasks;
 
 const Time& Scheduler::currentTime() {
     return s_time;
