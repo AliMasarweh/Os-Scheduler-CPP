@@ -13,10 +13,5 @@ void TaskDecorator::run() {
 }
 
 unsigned long TaskDecorator::getNextRunPeriod() {
-    return this->task->getPriority();
+    return this->task->getNextRunPeriod();
 }
-
-unsigned char TaskDecorator::getPriority() {
-    return this->task->getPriority();
-}
-

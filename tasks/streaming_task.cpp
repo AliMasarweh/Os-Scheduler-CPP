@@ -18,7 +18,3 @@ void StreamingTask::run() {
 unsigned long StreamingTask::getNextRunPeriod() {
     return this->m_task->getNextRunPeriod();
 }
-
-unsigned char StreamingTask::getPriority() {
-    return this->m_task->getPriority();
-}

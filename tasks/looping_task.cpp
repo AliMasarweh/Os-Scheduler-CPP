@@ -15,7 +15,3 @@ void LoopingTask::run() {
 unsigned long LoopingTask::getNextRunPeriod() {
     return this->m_task->getNextRunPeriod();
 }
-
-unsigned char LoopingTask::getPriority() {
-    return this->m_task->getPriority();
-}
