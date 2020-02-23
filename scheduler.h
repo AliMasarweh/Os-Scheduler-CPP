@@ -15,12 +15,11 @@ class Scheduler {
 public:
     static const Time& currentTime();
     static void addTask(Task& t);
-    static bool removeTask(Task& t);
     static Time runAllTasks();
 
 private:
-    static std::vector<std::vector<Task *> > initTasksContainer();
-    static std::priority_queue<Time, std::vector<Task*>, std::greater<Time> > s_prioritizedTasks;
+    static std::priority_queue<Task, std::vector<Task*>,
+            std::greater<Task> > s_prioritizedTasks;
     static Time s_time;
     static size_t s_numberOfTasks;
 };
