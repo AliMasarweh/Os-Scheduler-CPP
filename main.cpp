@@ -6,6 +6,7 @@
 #include "tasks/basic_task.h"
 #include "tasks/streaming_task.h"
 #include "tasks/looping_task.h"
+#include "tasks/sleeping_task.h"
 
 using namespace std;
 
@@ -41,7 +42,8 @@ TEST(TaskUnitTesting, CreatingBasicTaskAndDecorating)
 
     BasicTask task;
     StreamingTask streamingTask(task, ss, str);
-    LoopingTask loopingTask(streamingTask, 3);
+    SleepingTask sleepingTask(streamingTask, 1);
+    LoopingTask loopingTask(sleepingTask, 3);
 
     loopingTask.run();
 
@@ -93,6 +95,11 @@ TEST(GreaterTaskUnitTesting, OrderingTest)
         cout << arr[i] << " " << tasks.top()->getNextRunPeriod() << endl;
         tasks.pop();
 //        ASSERT_EQ(arr[i], tasks[i]->getNextRunPeriod());
+    }
+
+    for(int i = 0; i < n; ++i)
+    {
+        delete arrTasks[i];
     }
 }
 
