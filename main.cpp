@@ -65,6 +65,39 @@ TEST(TaskUnitTesting, BasicTaskComparision)
     ASSERT_TRUE(add_pTask1 < add_pTask2);
 }
 
+TEST(GreaterTaskUnitTesting, OrderingTest)
+{
+    vector<Task*> tasks;
+    make_heap(tasks.begin(), tasks.end());
+
+    int arr[] = {43,23,63,45,42,12,32,34,2};
+
+    size_t n = sizeof(arr)/sizeof(int);
+
+    Task* arrTasks[n];
+
+    for(int i = 0; i < n; ++i)
+    {
+        arrTasks[i] = new BasicTask(arr[i]);
+    }
+
+    sort(arr, arr+n);
+
+    for(int i = 0; i < n; ++i)
+    {
+        tasks.push_back(arrTasks[i]);
+        push_heap(tasks.begin(), tasks.end(), LesserTask());
+    }
+
+    for(int i = 0; i < n; ++i)
+    {
+        cout << arr[i] << " " << tasks.back()->getNextRunPeriod() << endl;
+        pop_heap(tasks.begin(), tasks.end());
+        tasks.pop_back();
+//        ASSERT_EQ(arr[i], tasks[i]->getNextRunPeriod());
+    }
+}
+
 TEST(SchedulerUnitTesting, AllTasksExecution)
 {
     //TODO: Add some tasks to the schudeler

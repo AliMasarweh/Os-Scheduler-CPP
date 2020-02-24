@@ -18,4 +18,10 @@ struct GreaterTask{
     }
 };
 
+struct LesserTask{
+    bool operator()(const Task* a,const Task* b) const{
+        return a->getNextRunPeriod()<b->getNextRunPeriod();
+    }
+};
+
 #endif //OS_SCHEDULER_TASK_H
