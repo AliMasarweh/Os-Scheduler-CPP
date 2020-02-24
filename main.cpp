@@ -52,14 +52,13 @@ TEST(TaskUnitTesting, BasicTaskComparision)
     BasicTask task1(1);
     BasicTask task2(3);
 
-    ASSERT_TRUE(task2 > task1);
+    ASSERT_TRUE(task2.getNextRunPeriod()
+        > task1.getNextRunPeriod());
 
     BasicTask* pTask2 = &task2;
     BasicTask* pTask1 = &task1;
 
-    greater<Task*> greater;
-    ASSERT_TRUE(greater(pTask2, pTask1));
-    ASSERT_TRUE(pTask2 > pTask1);
+    ASSERT_TRUE(GreaterTask()(pTask2, pTask1));
 
     size_t add_pTask1 = (size_t) pTask1;
     size_t add_pTask2 = (size_t) pTask2;

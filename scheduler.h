@@ -18,8 +18,7 @@ public:
     static Time runAllTasks();
 
 private:
-    static std::priority_queue<Task*, std::vector<Task*>,
-            std::greater<Task*> > s_prioritizedTasks;
+    static std::vector<Task*> s_prioritizedTasks;
     static Time s_time;
     static size_t s_numberOfTasks;
 };

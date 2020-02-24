@@ -11,8 +11,7 @@ using namespace std;
 
 Time Scheduler::s_time = Time();
 size_t Scheduler::s_numberOfTasks = 0;
-priority_queue<Task*, vector<Task*>,
-        greater<Task*> > Scheduler::s_prioritizedTasks;
+vector<Task*> Scheduler::s_prioritizedTasks;
 
 const Time& Scheduler::currentTime() {
     return s_time;
@@ -20,7 +19,9 @@ const Time& Scheduler::currentTime() {
 
 void Scheduler::addTask(Task &t)
 {
-    s_prioritizedTasks.push(&t);
+    s_prioritizedTasks.push_back(&t);
+    push_heap(s_prioritizedTasks.begin(), s_prioritizedTasks.end(),
+              GreaterTask());
     ++s_numberOfTasks;
 }
 
@@ -30,8 +31,10 @@ Time Scheduler::runAllTasks() {
 
     while(!Scheduler::s_prioritizedTasks.empty())
     {
-        Task *task = s_prioritizedTasks.top();
-        s_prioritizedTasks.pop();
+        pop_heap(s_prioritizedTasks.begin(), s_prioritizedTasks.end(),
+                 GreaterTask());
+        Task *task = s_prioritizedTasks.front();
+        s_prioritizedTasks.pop_back();
         if (task->getNextRunPeriod() > 0)
         {
             clock_t time = clock();
