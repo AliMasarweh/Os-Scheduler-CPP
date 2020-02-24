@@ -8,6 +8,7 @@
 #include <vector>
 #include <queue>
 #include "time.h"
+#include "task.h"
 
 class Task;
 
@@ -18,7 +19,8 @@ public:
     static Time runAllTasks();
 
 private:
-    static std::vector<Task*> s_prioritizedTasks;
+    static std::priority_queue<Task*,
+                std::vector<Task*>, GreaterTask > s_prioritizedTasks;
     static Time s_time;
     static size_t s_numberOfTasks;
 };

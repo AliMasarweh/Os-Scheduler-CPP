@@ -1,6 +1,7 @@
 #include <iostream>
 #include <gtest/gtest.h>
 #include <stdlib.h>
+#include <queue>
 #include "time.h"
 #include "tasks/basic_task.h"
 #include "tasks/streaming_task.h"
@@ -67,8 +68,7 @@ TEST(TaskUnitTesting, BasicTaskComparision)
 
 TEST(GreaterTaskUnitTesting, OrderingTest)
 {
-    vector<Task*> tasks;
-    make_heap(tasks.begin(), tasks.end());
+    priority_queue<Task*, vector<Task*>, GreaterTask> tasks;
 
     int arr[] = {43,23,63,45,42,12,32,34,2};
 
@@ -85,15 +85,13 @@ TEST(GreaterTaskUnitTesting, OrderingTest)
 
     for(int i = 0; i < n; ++i)
     {
-        tasks.push_back(arrTasks[i]);
-        push_heap(tasks.begin(), tasks.end(), LesserTask());
+        tasks.push(arrTasks[i]);
     }
 
     for(int i = 0; i < n; ++i)
     {
-        cout << arr[i] << " " << tasks.back()->getNextRunPeriod() << endl;
-        pop_heap(tasks.begin(), tasks.end());
-        tasks.pop_back();
+        cout << arr[i] << " " << tasks.top()->getNextRunPeriod() << endl;
+        tasks.pop();
 //        ASSERT_EQ(arr[i], tasks[i]->getNextRunPeriod());
     }
 }
